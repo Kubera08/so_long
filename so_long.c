@@ -1,7 +1,7 @@
 // 1. gérer erreurs et leaks
-// verifier le nombre d'arg
+// verifier le nombre d'arg 
 // malloc notre structure
-// vérifier les extensions fichier (maps)
+// vérifier les extensions fichier (maps) -------------> FAIT
 // ouvrir les fichiers maps (gnl, open)
 // vérifier que la map est bien un rectangle
 // vérifier que les caractères soient correctes : map doit être constitutée des 5 caractères. Au moins un P, un E et un C
@@ -27,14 +27,8 @@
 
 // COMMANDE DE COMPIL : gcc -I /usr/X11/include -g -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit so_long.c 
 
-#include <stdlib.h>
-#include "minilibx_macos/mlx.h"
 
-
-# define WINDOW_HEIGHT 300
-# define WINDOW_WIDTH 600
-# define MLX_ERROR 1
-
+#include "so_long.h"
 
 
 typedef struct s_data
@@ -44,6 +38,17 @@ typedef struct s_data
 
 }		t_data;
 
+// afficher pixel 
+
+int	render (t_data *data)
+{
+	if (data->mlx_ptr != NULL)
+		mlx_pixel_put(data->mlx_ptr, data->mlx_win, 100, 100, 0xFF0000 );
+	return (0);
+	
+}
+
+// gérer les events
 int	handle_no_event(void *data)
 {
 	return (0);
@@ -51,7 +56,7 @@ int	handle_no_event(void *data)
 
 int handle_keypress(int keysym, t_data *data)
 {
-	if (keysym == 0x001b) 
+	if (keysym == 1) 
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);	
 	return (0);
 }
@@ -64,6 +69,7 @@ int	handle_keyrelease(int keysym, void *data)
 
 int main(void)
 {
+
 	t_data 	data;
 
 // initialisation et création de fenêtre
@@ -81,10 +87,17 @@ int main(void)
 // Register events before the loop starts = hooks functions
 
 
+	//render 
+
+	mlx_loop_hook(data.mlx_ptr, &render, &data);
+
+	// key events
+
+	/*
 	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data); // exécutée quand pas d'event sinon la boucle ne s'arrête jamais
 	mlx_hook(data.mlx_win, KeyPress, KeyPressMask, &handle_keypress, &data); // fonction exécutée à chaque fois qu'une touche est pressée
 	mlx_hook(data.mlx_win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &data); //exécutée à chaque fois qu'une touche est relachée
-
+	*/
 
 // loop 
 
@@ -93,6 +106,6 @@ int main(void)
 // clear
 	free(data.mlx_ptr);
 
+	return (0);
+	
 }
-
-

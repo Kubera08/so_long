@@ -6,7 +6,7 @@
 /*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:32:09 by abeaudui          #+#    #+#             */
-/*   Updated: 2023/01/19 16:33:14 by abeaudui         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:25:54 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	handle_keyrelease(int keysym, void *data)
 	
 }
 
+
 int	init(void)
 {
 	t_data 	data;
@@ -70,8 +71,18 @@ int	init(void)
 	mlx_loop(data.mlx_ptr);
 
 // clear
-	mlx_destroy_display(data.mlx_ptr);
-	free (data.mlx_ptr);
+	//destroy();
 	
 	return (0);
 }
+
+
+/*
+void destroy()
+{
+	t_data 	data;
+
+	mlx_destroy_display(data.mlx_ptr);
+	free (data.mlx_ptr);
+}
+*/

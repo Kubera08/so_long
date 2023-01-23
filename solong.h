@@ -22,12 +22,14 @@
 #  define BUFFER_SIZE 1
 # endif
 
-int 	countfirstline(char *s);
-int 	checkextension(char *s);
-int 	counttotal(char *s);
-int 	isitarectangle(char *s);
+int 	checkextension(const char *s);
+int 	isitarectangle(char **map) ;
+int 	check_only_C_E_P_1_0( char **map);
+int 	check_all(char *s);
+char 	**create_map( char *s);
+int 	map_size(char *s);
+void 	destroy();
 int		init(void);
-
 int		ft_strlen(char *str);
 char	*read_and_addtostash(char *stash, int fd);
 char	*extract_and_addtoline(char *stash);
@@ -35,14 +37,11 @@ char	*get_next_line(int fd);
 char	*collect_andaddtostash(char *stash);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
-int		 check_C(char *s);
-int 	 check_P(char *s);
-int 	 check_E(char *s);
-int  	check_other(char *s);
-int		checkall(char *s);
+void	 exit();
+int 	isclosed(char **map);
+int 	isclosed_2(char *str);
 
-
-
+x
 
 typedef struct s_data
 

@@ -1,10 +1,10 @@
 // 1. gérer erreurs et leaks
 // verifier le nombre d'arg 
-// malloc notre structure
+// malloc notre structure 
 // vérifier les extensions fichier (maps) -------------> FAIT
-// ouvrir les fichiers maps (gnl, open)
-// vérifier que la map est bien un rectangle
-// vérifier que les caractères soient correctes : map doit être constitutée des 5 caractères. Au moins un P, un E et un C
+// ouvrir les fichiers maps (gnl, open) -----> FAIT
+// vérifier que la map est bien un rectangle ------> FAIT
+// vérifier que les caractères soient correctes : map doit être constitutée des 5 caractères. Au moins un P, un E et un C ----> FAIT
 // que la map soit bien entourée de murs
 // créer une fonction exit qui :
 // 		fermer la fenêtre : mlx_destroy_window
@@ -35,12 +35,15 @@ int main(int ac, char **av)
 {
 	if(ac == 2)
 	{
-		if(checkall(av[1]) == 1)
-			init();
-		else
-		{
-			printf("Error: la map ne remplit pas les conditions requises\n");
-			return (0);
-		}
+		if( checkextension(av[1]) == 0)
+			{
+				if( check_all(av[1]) == 0)
+					init();
+				else
+				{
+					printf("Error: la map ne remplit pas les conditions requises\n");
+					return (0);
+				}
+			}
 	}
 }

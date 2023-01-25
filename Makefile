@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+         #
+#    By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2023/01/19 16:44:36 by abeaudui         ###   ########.fr        #
+#    Updated: 2023/01/20 00:42:06 by arnaud           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ RM = rm -rf
 
 INC =   include
 
-LIB = -L ./libft ./minilibx-linux/libmlx_Linux.a -lXext -lX11 -I ./minilibx
+LIB = -L ./libft minilibx_macos/libmlx.a
 
 .c.o:
 	$(CC) $(FLAGS) -I$(INC) -c $< -o $(<:.c=.o)

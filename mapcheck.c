@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mapcheck.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:41:18 by abeaudui          #+#    #+#             */
-/*   Updated: 2023/01/23 14:12:18 by abeaudui         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:59:42 by arnaud           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
 
-int checkextension(const char *s) // check extension
+int checkextension( char *s) // check extension
 {
 	int i;
 
@@ -108,20 +108,12 @@ int isclosed_2(char *str)
 	return (0);
 }
 
-
-
-
-
-
-
-
-
 int check_all(char *s)
 {
-	char **map;
-	map = create_map(s);
+	t_data data;
+	data.map = create_map(s);
 	
-	if (checkextension(s) == 0 && isitarectangle(map) == 0  && check_only_C_E_P_1_0(map) == 0 && isclosed(map) == 0)
+	if (isitarectangle(data.map) == 0  && check_only_C_E_P_1_0(data.map) == 0 && isclosed(data.map) == 0)
 		return(0);
 	else
 		return(1);

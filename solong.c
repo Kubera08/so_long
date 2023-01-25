@@ -1,10 +1,10 @@
 // 1. gérer erreurs et leaks
 // verifier le nombre d'arg 
-// malloc notre structure 
+// malloc notre structure
 // vérifier les extensions fichier (maps) -------------> FAIT
-// ouvrir les fichiers maps (gnl, open) -----> FAIT
-// vérifier que la map est bien un rectangle ------> FAIT
-// vérifier que les caractères soient correctes : map doit être constitutée des 5 caractères. Au moins un P, un E et un C ----> FAIT
+// ouvrir les fichiers maps (gnl, open)
+// vérifier que la map est bien un rectangle
+// vérifier que les caractères soient correctes : map doit être constitutée des 5 caractères. Au moins un P, un E et un C
 // que la map soit bien entourée de murs
 // créer une fonction exit qui :
 // 		fermer la fenêtre : mlx_destroy_window
@@ -25,7 +25,7 @@
 // mlx_hook() pour intégrer une fonction pour fermer avec la croix
 
 
-// COMMANDE DE COMPIL : gcc solong.c ./minilibx-linux/libmlx_Linux.a -lXext -lX11 -I ./minilibx
+// COMMANDE DE COMPIL : gcc -I /usr/X11/include -g -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit *.c
 
 
 
@@ -33,12 +33,18 @@
 
 int main(int ac, char **av)
 {
+	t_data data;
+
+	data.title = av[1];
 	if(ac == 2)
 	{
-		if( checkextension(av[1]) == 0)
-			{
-				if( check_all(av[1]) == 0)
-					init();
+		if(checkextension(data.title) == 0)
+			{		
+
+				data.map = create_map(data.title);
+				if( check_all(data.title) == 0)
+				// rajouter un if avant -> if on arrive a parser la map : init
+					init(&data); 
 				else
 				{
 					printf("Error: la map ne remplit pas les conditions requises\n");

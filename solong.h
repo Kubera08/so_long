@@ -3,9 +3,9 @@
 #define SOLONG_H
 #include <stdlib.h>
 #include <stdio.h>
-#include "minilibx_macos/mlx.h"
-// #include "/usr/X11/include/X11"
-// #include "/usr/X11/Xutil.h"
+#include "minilibx-linux/mlx.h"
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -15,7 +15,6 @@
 
 
 #define GAMESIZE 100
-
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -48,7 +47,6 @@ typedef struct s_data
 
 	int		place;
 	int 	place2;
-
 }		t_data;
 
 int    check_P_E(char **map);
@@ -76,11 +74,18 @@ void	 mlx_put_content(t_data *data, int x, int y, char **map);
 void 	mlx_put(t_data *data, void *path, int x, int y);
 int    check_P_E(char **map);
 void	*ft_put_img(t_data *data, char *path);
+void  move_up(t_data *data);
+void  move_down(t_data *data);
+void  move_left(t_data *data);
+void  move_right(t_data *data);
+void destroy(t_data *data);
+int    check_collect(char **map);
 
 void put_walls(t_data *data, int x, int y, char **map);
 void put_floor(t_data *data, int x, int y, char **map);
 void put_character(t_data *data, int x, int y, char **map);
 void put_exit(t_data *data, int x, int y, char **map);
+void put_collectible(t_data *data, int x, int y, char **map);
 
 
 

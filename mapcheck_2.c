@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapcheck_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:11:09 by abeaudui          #+#    #+#             */
-/*   Updated: 2023/01/24 16:16:04 by arnaud           ###   ########.fr       */
+/*   Updated: 2023/01/27 19:44:17 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,14 @@ int check_only_C_E_P_1_0(char **map)
 		while (str[j])
 		{
 			if(str[j] != 'C' && str[j] != 'P' && str[j] != 'E' && str[j] != '1' &&  str[j] != '0' &&  str[j] != '\n' &&  str[j] != '\0' )
-			{
 				return (1);
-			}	
-
 			j++;
  		}
-		i++;		
+		i++;
 	}
 	return(0);
 }
+
 int    check_P_E(char **map)
 {
     int i;
@@ -63,4 +61,24 @@ int    check_P_E(char **map)
          }
     }
     return(0);
+}
+
+int    check_collect(char **map)
+{
+    int i;
+    int j;
+    int collectibles;
+    char *str;
+
+    i = 0;
+    collectibles = 0;
+    while (map[++i])
+    {
+        str = map[i];
+        j = 0;
+        while (str[j++])
+            if (str[j] == 'C')
+                collectibles++;
+    }
+    return(collectibles);
 }

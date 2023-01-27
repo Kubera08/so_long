@@ -6,12 +6,11 @@
 /*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:59:16 by abeaudui          #+#    #+#             */
-/*   Updated: 2023/01/19 17:56:09 by abeaudui         ###   ########.fr       */
+/*   Updated: 2023/01/27 19:16:06 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-#include <string.h>
 
 char	*get_next_line(int fd)
 {

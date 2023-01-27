@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:05:25 by arnaud            #+#    #+#             */
-/*   Updated: 2023/01/24 16:32:58 by arnaud           ###   ########.fr       */
+/*   Updated: 2023/01/27 19:36:28 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char **create_map(char *s)
 	close(fd);
 	return (map);
 }
-
 
 void	*ft_put_img(t_data *data, char *path)
 {

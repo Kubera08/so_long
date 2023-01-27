@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_pos.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 19:34:51 by arnaud            #+#    #+#             */
-/*   Updated: 2023/01/23 19:46:03 by arnaud           ###   ########.fr       */
+/*   Updated: 2023/01/25 15:29:25 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int get_pos_x(char **map, char c)
 	while(map[i])
 	{
 		str = map[i];
+		j = 0;
 		while(str[j])
 		{
 			if (str[j] == c)
@@ -47,6 +48,7 @@ int get_pos_y(char **map, char c)
 	while(map[i])
 	{
 		str = map[i];
+		j = 0;
 		while(str[j])
 		{
 			if (str[j] == c)

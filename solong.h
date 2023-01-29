@@ -14,7 +14,7 @@
 #include <stddef.h>
 
 
-#define GAMESIZE 100
+#define GAMESIZE 64
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -29,6 +29,8 @@ typedef struct s_data
 
 	void 	*floor;
 	void 	*wall;
+	void 	*wall2;
+	void 	*wall3;
 	void	*exit;
 	void 	*chara;
 	void	*collectible;
@@ -88,5 +90,6 @@ void put_exit(t_data *data, int x, int y, char **map);
 void put_collectible(t_data *data, int x, int y, char **map);
 
 
+void put_walls2(t_data *data, int x, int y, char **map);
 
 #endif

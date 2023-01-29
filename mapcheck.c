@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapcheck.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:41:18 by abeaudui          #+#    #+#             */
-/*   Updated: 2023/01/23 19:59:42 by arnaud           ###   ########.fr       */
+/*   Updated: 2023/01/29 15:36:32 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@ int checkextension( char *s) // check extension
 
 int isitarectangle(char **map) 
 {
-	int i;
+	
 	int size;
 	char *str;	
 	int j;
 	int temp;
 	
 	temp = strlen(map[0]);
-	i = 0;
 	j = 0;
 	size = 0;
 
@@ -63,14 +62,12 @@ int isitarectangle(char **map)
 
 int isclosed(char **map)
 {
-
 	int i;
 	char *str;	
 	int j;
 	
 	i = 0;
-	j = 0;
-	
+	j = 0;	
 	str = map[j];
 	while (str[i])
 	{

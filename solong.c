@@ -42,8 +42,7 @@ int main(int ac, char **av)
 			{		
 
 				data.map = create_map(data.title);
-				if( check_all(data.title) == 0)
-				// rajouter un if avant -> if on arrive a parser la map : init
+				if( check_all(data) == 0)
 					init(&data); 
 				else
 				{

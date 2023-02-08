@@ -6,7 +6,7 @@
 /*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:32:09 by abeaudui          #+#    #+#             */
-/*   Updated: 2023/01/29 15:40:26 by abeaudui         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:24:25 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void *init_content (t_data *data)
 			data->y_size * GAMESIZE, "so_long");
 	if (data->mlx_win == NULL)
 		return (NULL);
-		
+
 	data->wall = ft_put_img(data, "xpm/sapin1.xpm");
 	data->wall2 = ft_put_img(data, "xpm/sapin2.xpm");
 	data->wall3 = ft_put_img(data, "xpm/sapin3.xpm");
-
+  
 	data->floor = ft_put_img(data, "xpm/snow.xpm");
 	data->chara = ft_put_img(data, "xpm/chara.xpm");
 	data->exit = ft_put_img(data, "xpm/exit.xpm");
@@ -46,7 +46,6 @@ void *init_content (t_data *data)
 int	handle_no_event(void *data)
 {
 	char *i;
-
 	i = data;
 	i++;
 
@@ -55,8 +54,6 @@ int	handle_no_event(void *data)
 
 int handle_keypress(int keysym, t_data *data)
 {
-
-	
 	if (keysym == XK_Escape) 
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	if (keysym == XK_w)
@@ -70,54 +67,56 @@ int handle_keypress(int keysym, t_data *data)
 
 	if (keysym == XK_d)
 		move_right(data);
-		
-		
+
+	
 	return (0);
 }
 
-int	handle_keyrelease(void *data)
+int	handle_keyrelease()
 {
 	static int i;
 	i = i + 1;
 	printf("Nombre de mouvements: %d\n", i);
 	return(i);
-	
 }
 
+/*
+int handle_mousepress(int keycode, t_data *data)
+{
+	if(keycode == 1 && )
+		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+	return(0);
+}
 
-int	init(t_data *data)
+*/
+
+
+void	init(t_data *data)
 {
 	
 	data = init_content(data);
 	if (data == NULL)
 	{
-		return (0);
+		return ;
 	}
-	
-
 	data->img_ptr = mlx_new_image(data->mlx_ptr, data->x_size, data->y_size);
-	
-	
+	if (!data->img_ptr)
+		return ;
+  
 // initialisation et création de fenêtre
 	
 
 	
 // Register events before the loop starts = hooks functions
 
-
-
 	// key events
-
-	
-	mlx_loop_hook(data->mlx_ptr, &handle_no_event, data); // exécutée quand pas d'event sinon la boucle ne s'arrête jamais
-	mlx_hook(data->mlx_win, KeyPress, KeyPressMask, &handle_keypress, data); // fonction handle_keypress exécutée à chaque fois qu'une touche est pressée
-	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &handle_keyrelease, data); // fonction handle_keyrelease exécutée à chaque fois qu'une touche est relachée
-
+	mlx_loop_hook(data->mlx_ptr, &handle_no_event, data);
+	mlx_hook(data->mlx_win, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &handle_keyrelease, data);
+	//mlx_mouse_hook(data->mlx_win, &handle_mousepress, data);
 			
 // render 
-
 	put_walls(data, data->x_size, data->y_size, data->map);
-	
 	put_floor(data, data->x_size, data->y_size, data->map);
 	put_character(data, data->x_size, data->y_size, data->map);
 	put_exit(data, data->x_size, data->y_size, data->map);
@@ -126,19 +125,52 @@ int	init(t_data *data)
 // loop
 
 	mlx_loop(data->mlx_ptr);
+	mlx_loop_end(data->mlx_ptr);
+
 
 // clear
-
 	destroy(data);
-	return(0);
-
+	
 } 
 
-void destroy(t_data *data)
+
+void	destroy(t_data *data)
 {
-	
+	free_maps(data->map, data);
+	mlx_destroy_image(data->mlx_ptr, data->wall);
+	mlx_destroy_image(data->mlx_ptr, data->floor);
+	mlx_destroy_image(data->mlx_ptr, data->exit);
+	mlx_destroy_image(data->mlx_ptr, data->chara);
+	mlx_destroy_image(data->mlx_ptr, data->collectible);
+	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
 	mlx_destroy_display(data->mlx_ptr);
-	//mlx_destroy_window(data->mlx_ptr, data->mlx_win);
-	
-	free (data->mlx_ptr);
+	free(data->mlx_ptr);
+}
+
+void	free_maps(char **map, t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (i < data->y_size)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+void	free_maps2(char **map, t_data data)
+{
+	int		y;
+	int		i;
+
+	i = 0;
+	y = map_size(data.title);
+	while (i < y)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
 }

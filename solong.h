@@ -13,9 +13,7 @@
 #include <string.h>
 #include <stddef.h>
 
-
 #define GAMESIZE 64
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
@@ -35,10 +33,6 @@ typedef struct s_data
 	void 	*chara;
 	void	*collectible;
 
-	int		img_width;
-	int 	img_height;
-	char 	img_path;
-
 	char 	**map;
 	char 	*title;
 	int 	x_size;
@@ -47,12 +41,10 @@ typedef struct s_data
 	int 	x_pos;
 	int 	y_pos;
 
-	int		place;
-	int 	place2;
 }		t_data;
 
 int    check_P_E(char **map);
-int		init(t_data *data);
+void		init(t_data *data);
 int		ft_strlen( char *str);
 char	*read_and_addtostash(char *stash, int fd);
 char	*extract_and_addtoline(char *stash);
@@ -67,7 +59,7 @@ int 	check_only_C_E_P_1_0(char **map);
 int 	checkextension(char *s);
 int 	isitarectangle(char **map);
 int 	map_size(char *s);
-int 	check_all(char *s);
+int	check_all(t_data data);
 int 	isclosed(char **map);
 int 	isclosed_2(char *s);
 int 	get_pos_x(char **map, char c);
@@ -89,7 +81,13 @@ void put_character(t_data *data, int x, int y, char **map);
 void put_exit(t_data *data, int x, int y, char **map);
 void put_collectible(t_data *data, int x, int y, char **map);
 
+static void flood_fill(char **map1, int y, int i);
+static int check_all2(char **str, int size, int len);
+int good_path(char **map, t_data data);
+int ft_strln(char *str);
+char	*ft_strdup(char *s);
+void	free_maps(char **map, t_data *data);
+void	free_maps2(char **map, t_data data);
 
-void put_walls2(t_data *data, int x, int y, char **map);
 
 #endif

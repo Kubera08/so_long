@@ -6,43 +6,16 @@
 /*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 20:09:14 by arnaud            #+#    #+#             */
-/*   Updated: 2023/02/08 13:15:29 by abeaudui         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:10:40 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void mlx_put(t_data *data, void *path, int x, int y)
+void	put_walls(t_data *data, int x, int y, char **map)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, path, GAMESIZE * x, GAMESIZE * y);
-}
-
-void put_walls(t_data *data, int x, int y, char **map)
-{
-	int	i;
-	int	j;
-	int k;
-
-	k = 0;
-	i = 0;
-	j = 0;
-	while ( i < y )
-	{
-		j = 0;
-		while ( j < x) 
-		{
-			if(map[i][j] == '1') 
-					mlx_put(data, data->wall, j, i);
-			j++;
-		}
-		i++;
-	}
-}
-
-void put_floor(t_data *data, int x, int y, char **map)
-{
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -51,7 +24,27 @@ void put_floor(t_data *data, int x, int y, char **map)
 		j = 0;
 		while (j < x)
 		{
-			if(map[i][j] == '0')
+			if (map[i][j] == '1')
+				mlx_put(data, data->wall, j, i);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	put_floor(t_data *data, int x, int y, char **map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (i < y)
+	{
+		j = 0;
+		while (j < x)
+		{
+			if (map[i][j] == '0')
 				mlx_put(data, data->floor, j, i);
 			j++;
 		}
@@ -59,10 +52,10 @@ void put_floor(t_data *data, int x, int y, char **map)
 	}
 }
 
-void put_character(t_data *data, int x, int y, char **map)
+void	put_character(t_data *data, int x, int y, char **map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -71,7 +64,7 @@ void put_character(t_data *data, int x, int y, char **map)
 		j = 0;
 		while (j < x)
 		{
-			if(map[i][j] == 'P')
+			if (map[i][j] == 'P')
 				mlx_put(data, data->chara, j, i);
 			j++;
 		}
@@ -79,19 +72,19 @@ void put_character(t_data *data, int x, int y, char **map)
 	}
 }
 
-void put_exit(t_data *data, int x, int y, char **map)
+void	put_exit(t_data *data, int x, int y, char **map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
-	while (i < y )
+	while (i < y)
 	{
 		j = 0;
 		while (j < x)
 		{
-			if(map[i][j] == 'E')
+			if (map[i][j] == 'E')
 				mlx_put(data, data->exit, j, i);
 			j++;
 		}
@@ -99,19 +92,19 @@ void put_exit(t_data *data, int x, int y, char **map)
 	}
 }
 
-void put_collectible(t_data *data, int x, int y, char **map)
+void	put_collectible(t_data *data, int x, int y, char **map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
 	while (i < y)
 	{
 		j = 0;
-		while (j < x )
+		while (j < x)
 		{
-			if(map[i][j] == 'C')
+			if (map[i][j] == 'C')
 				mlx_put(data, data->collectible, j, i);
 			j++;
 		}

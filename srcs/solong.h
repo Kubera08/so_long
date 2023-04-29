@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solong.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/25 15:07:14 by abeaudui          #+#    #+#             */
+/*   Updated: 2023/04/25 15:07:30 by abeaudui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef SOLONG_H
 #define SOLONG_H
 #include <stdlib.h>
 #include <stdio.h>
-#include "minilibx-linux/mlx.h"
+#include "/mnt/nfs/homes/abeaudui/Desktop/so_long/so_long/minilibx/mlx.h"
+#include "/mnt/nfs/homes/abeaudui/Desktop/so_long/so_long/minilibx/mlx_int.h"
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <unistd.h>
@@ -55,7 +67,7 @@ char	*ft_strjoin(char *s1, char *s2);
 
 char 	**create_map(char *s);
 int 	map_size(char *s); 
-int 	check_only_C_E_P_1_0(char **map);
+int	checkcharac(char **map);
 int 	checkextension(char *s);
 int 	isitarectangle(char **map);
 int 	map_size(char *s);
@@ -72,7 +84,7 @@ void  move_up(t_data *data);
 void  move_down(t_data *data);
 void  move_left(t_data *data);
 void  move_right(t_data *data);
-void destroy(t_data *data);
+int		destroy(t_data *data);
 int    check_collect(char **map);
 
 void put_walls(t_data *data, int x, int y, char **map);
@@ -81,8 +93,8 @@ void put_character(t_data *data, int x, int y, char **map);
 void put_exit(t_data *data, int x, int y, char **map);
 void put_collectible(t_data *data, int x, int y, char **map);
 
-static void flood_fill(char **map1, int y, int i);
-static int check_all2(char **str, int size, int len);
+void flood_fill(char **map1, int y, int i);
+int check_all2(char **str, int size, int len);
 int good_path(char **map, t_data data);
 int ft_strln(char *str);
 char	*ft_strdup(char *s);

@@ -3,22 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+         #
+#    By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2023/01/20 00:42:06 by arnaud           ###   ########.fr        #
+#    Updated: 2023/02/26 13:46:43 by abeaudui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = solong
-
-LIBFT = libft/libft.a
+NAME = so_long
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC = solong.c mapcheck.c init.c get_next_line.c get_next_line_utils.c
+SRC = ./srcs/solong.c \
+			./srcs/mapcheck.c \
+			./srcs/mapcheck_2.c \
+			./srcs/map_utils.c \
+			./srcs/moves.c \
+			./srcs/put_content.c \
+			./srcs/get_pos.c \
+			./srcs/get_next_line.c \
+			./srcs/get_next_line_utils.c \
+			./srcs/destroy.c \
+			./srcs/pathfinder.c \
+			./srcs/init.c \
 
-
+		
 
 OBJS = $(SRC:.c=.o)
 
@@ -26,29 +35,29 @@ CC = gcc
 
 RM = rm -rf
 
-INC =   include
+INC = include
 
-LIB = -L ./libft minilibx_macos/libmlx.a
+LIB = ./minilibx/libmlx_Linux.a -g3 -lXext -lX11 -I ./minilibx/
 
 .c.o:
-	$(CC) $(FLAGS) -I$(INC) -c $< -o $(<:.c=.o)
+	$(CC) -I $(INC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-	make -C libft
-	$(CC) $(FLAGS) -I$(INC) -o $(NAME) $(OBJS) $(LIB)
+	make -C ./minilibx
+	$(CC) $(FLAGS) -I $(INC) -o $(NAME) $(OBJS) $(LIB)
 
 
 clean:
-	make clean -C libft
-	$(RM) $(OBJS) $(NAME) 
-
+	$(RM) $(OBJS) $(NAME)
+	make clean -C ./minilibx
 
 fclean: clean
-	$(RM) $(LIBFT)
 	$(RM) $(NAME)
+	$(RM) ./minilibx/libmlx_Linux.a
+	$(RM) ./minilibx/libmlx.a
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

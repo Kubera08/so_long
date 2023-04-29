@@ -3,28 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arnaud <arnaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abeaudui <abeaudui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:05:29 by abeaudui          #+#    #+#             */
-/*   Updated: 2023/01/24 16:17:21 by arnaud           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:11:14 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-int ft_strlen( char *str)
+int	ft_strlen( char *str)
 {
-	int i;
+	int		i;
 
 	i = 0;
-	if(!str)
-		return(0);
+	if (!str)
+		return (0);
 	while (str[i])
-	{
 		i++;
-	}
-	return(i);
-	
+	return (i);
 }
 
 char	*ft_strchr(char *s, int c)
@@ -70,13 +67,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 	}
 	while (s2[j])
-	{
-		p[i] = s2[j];
-		i++;
-		j++;
-	}
+		p[i++] = s2[j++];
 	p[i] = '\0';
 	free(s1);
 	return (p);
 }
-
